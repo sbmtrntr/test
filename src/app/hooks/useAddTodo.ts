@@ -23,7 +23,9 @@ export const useAddTodo = () => {
         setLoading(false);
     };
 
-    fetchTodos();
+    useEffect(() => {
+        fetchTodos();
+    }, []);
 
     return { todos, loading, fetchTodos };
 };

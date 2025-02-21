@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React from "react";
 import { useAddTodo } from "../app/hooks/useAddTodo";
 
 interface Todo {
@@ -7,14 +7,18 @@ interface Todo {
 }
 
 export const ToDoList: React.FC = () => {
-    const { todos }: { todos: Todo[] } = useAddTodo()
+    const { todos, loading }: { todos: Todo[], loading: boolean } = useAddTodo();
 
     return (
         <>
             <div>todoリスト</div>
-            {todos.map((todo) => (
-                <li key={todo.id}>{todo.title}</li>
-            ))}
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                todos.map((todo) => (
+                    <li key={todo.id}>{todo.title}</li>
+                ))
+            )}
         </>
-    )
-}
+    );
+};
