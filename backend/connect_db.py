@@ -17,4 +17,8 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     response = supabase.table("todos").select("*").execute()
-    print("Select Response:", response)
+    return response
+
+@app.get("/env")
+def read_env():
+    return {"URL": URL, "KEY": KEY}
